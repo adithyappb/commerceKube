@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "microservices.fullname" . }}-order-service
+  labels:
+    {{- include "microservices.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "microservices.name" . }}-order-service
+  template:
+    metadata:
+      labels:
+        app: {{ include "microservices.name" . }}-order-service
+    spec:
+      containers:
+      - name: order-service
+        image: "{{ .Values.orderService.image.repository }}:{{ .Values.orderService.image.tag }}"
+        ports:
+        - containerPort: 8083
+

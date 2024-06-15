@@ -1,0 +1,26 @@
+replicaCount: 1
+
+userService:
+  image:
+    repository: user-service
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 80
+
+productService:
+  image:
+    repository: product-service
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 80
+
+orderService:
+  image:
+    repository: order-service
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 80
+
